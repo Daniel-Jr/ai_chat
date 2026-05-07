@@ -17,7 +17,14 @@
         </button>
         <div>
           <h1 id="chat_<%= @chat.id %>_title" class="text-sm font-semibold text-neutral-800 dark:text-neutral-200"><%= @chat.title %></h1>
-          <p class="text-xs text-neutral-400 dark:text-neutral-500"><%= t("chats.model_info") %></p>
+          <%= form_with model: @chat, html: { class: "mt-0.5" } do |f| %>
+            <%= f.select :model,
+                  options_for_select(@available_models.map { |m| [m, m] }, @chat.model&.model_id),
+                  {},
+                  onchange: "this.form.requestSubmit()",
+                  title: t("chats.change_model"),
+                  class: "rounded-md border-0 bg-transparent py-0 pl-0 pr-5 text-xs text-neutral-400 dark:text-neutral-500 focus:ring-0 cursor-pointer hover:text-neutral-600 dark:hover:text-neutral-300 appearance-none" %>
+          <% end %>
         </div>
       </div>
 

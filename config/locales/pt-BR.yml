@@ -20,6 +20,10 @@ pt-BR:
     start_conversation: "Inicie uma nova conversa com a IA."
     delete_confirm: "Excluir esta conversa? Essa ação não pode ser desfeita."
     model_info: "llama3.2 via Ollama"
+    change_model: "Alterar modelo"
+    create_error: "Não foi possível criar a conversa."
+    update_error: "Não foi possível atualizar a conversa."
+    deleted: "Conversa excluída."
 
   # Messages
   messages:
