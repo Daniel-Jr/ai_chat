@@ -1,0 +1,50 @@
+<div class="flex min-h-screen items-center justify-center bg-neutral-50 px-4 dark:bg-neutral-950">
+  <div class="w-full max-w-sm">
+    <!-- Logo -->
+    <div class="mb-8 text-center">
+      <div class="mx-auto mb-4 flex size-12 items-center justify-center rounded-2xl bg-neutral-800 dark:bg-neutral-200">
+        <svg class="size-6 text-white dark:text-neutral-900" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 4.25A2.25 2.25 0 014.25 2h11.5A2.25 2.25 0 0118 4.25v8.5A2.25 2.25 0 0115.75 15h-3.105a3.501 3.501 0 001.1 1.677A.75.75 0 0113.26 18H6.74a.75.75 0 01-.484-1.323A3.501 3.501 0 007.355 15H4.25A2.25 2.25 0 012 12.75v-8.5z" />
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold text-neutral-900 dark:text-white">AI Chat</h1>
+      <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">Sign in to your account</p>
+    </div>
+
+    <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-xs dark:border-neutral-800 dark:bg-neutral-900">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="space-y-4">
+          <div>
+            <%= f.label :email, class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                  class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 shadow-xs outline-none placeholder:text-neutral-400 focus:border-neutral-500 focus:ring-2 focus:ring-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:focus:ring-neutral-700",
+                  placeholder: "you@example.com" %>
+          </div>
+
+          <div>
+            <%= f.label :password, class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
+            <%= f.password_field :password, autocomplete: "current-password",
+                  class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 shadow-xs outline-none placeholder:text-neutral-400 focus:border-neutral-500 focus:ring-2 focus:ring-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:focus:ring-neutral-700",
+                  placeholder: "••••••••" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="flex items-center gap-2">
+              <%= f.check_box :remember_me, class: "size-4 rounded border-neutral-300 text-neutral-800" %>
+              <%= f.label :remember_me, class: "text-sm text-neutral-600 dark:text-neutral-400" %>
+            </div>
+          <% end %>
+
+          <%= f.submit "Sign in",
+                class: "w-full rounded-lg bg-neutral-800 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-neutral-700 active:bg-neutral-900 dark:bg-neutral-200 dark:text-neutral-900 dark:hover:bg-neutral-300 cursor-pointer" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-4 space-y-1 text-center text-sm">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

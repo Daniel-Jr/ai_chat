@@ -1,0 +1,65 @@
+<!-- Sidebar overlay (mobile) -->
+<div data-sidebar-target="overlay"
+     data-action="click->sidebar#close"
+     class="fixed inset-0 z-20 bg-black/40 lg:hidden hidden"></div>
+
+<!-- Sidebar -->
+<aside data-controller="sidebar"
+       data-sidebar-target="panel"
+       class="fixed inset-y-0 left-0 z-30 flex w-64 flex-col border-r border-neutral-200 bg-neutral-50 transition-transform duration-200 ease-in-out -translate-x-full lg:relative lg:translate-x-0 dark:border-neutral-700 dark:bg-neutral-900">
+
+  <!-- Sidebar header -->
+  <div class="flex items-center justify-between border-b border-neutral-200 px-4 py-3 dark:border-neutral-700">
+    <div class="flex items-center gap-2">
+      <div class="flex size-7 items-center justify-center rounded-lg bg-neutral-800 dark:bg-neutral-200">
+        <svg class="size-4 text-white dark:text-neutral-900" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 4.25A2.25 2.25 0 014.25 2h11.5A2.25 2.25 0 0118 4.25v8.5A2.25 2.25 0 0115.75 15h-3.105a3.501 3.501 0 001.1 1.677A.75.75 0 0113.26 18H6.74a.75.75 0 01-.484-1.323A3.501 3.501 0 007.355 15H4.25A2.25 2.25 0 012 12.75v-8.5z" />
+        </svg>
+      </div>
+      <span class="text-sm font-semibold text-neutral-800 dark:text-neutral-200">AI Chat</span>
+    </div>
+
+    <!-- Close on mobile -->
+    <button type="button"
+            data-action="click->sidebar#close"
+            class="flex size-7 items-center justify-center rounded-md text-neutral-500 hover:bg-neutral-200 lg:hidden dark:text-neutral-400 dark:hover:bg-neutral-700">
+      <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- New chat button -->
+  <div class="p-3">
+    <%= render "shared/new_chat_button" %>
+  </div>
+
+  <!-- Chat list -->
+  <nav class="flex-1 overflow-y-auto px-3 pb-3">
+    <div id="chat_list">
+      <%= render "chats/list", chats: chats, active_chat_id: active_chat&.id %>
+    </div>
+  </nav>
+
+  <!-- User footer -->
+  <div class="border-t border-neutral-200 px-3 py-3 dark:border-neutral-700">
+    <div class="flex items-center justify-between rounded-lg px-2 py-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <div class="flex size-7 shrink-0 items-center justify-center rounded-full bg-neutral-300 text-xs font-semibold text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200">
+          <%= current_user.email[0].upcase %>
+        </div>
+        <span class="truncate text-xs text-neutral-600 dark:text-neutral-400"><%= current_user.email %></span>
+      </div>
+      <%= link_to destroy_user_session_path,
+            data: { turbo_method: :delete },
+            title: "Sign out",
+            class: "flex size-7 shrink-0 items-center justify-center rounded-md text-neutral-400 hover:bg-neutral-200 hover:text-neutral-600 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" do %>
+        <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+        </svg>
+      <% end %>
+    </div>
+  </div>
+  </aside>
+
+<%= turbo_stream_from "user_#{current_user.id}" %>

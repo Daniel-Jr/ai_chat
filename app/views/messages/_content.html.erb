@@ -1,0 +1,7 @@
+<% bubble_classes = message.role.to_s == 'user' \
+     ? 'rounded-tr-sm bg-neutral-800 text-white dark:bg-neutral-200 dark:text-neutral-900' \
+     : 'rounded-tl-sm bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200' %>
+<div id="<%= dom_id(message) %>_content"
+     class="prose rounded-2xl px-4 py-2.5 text-sm leading-relaxed <%= bubble_classes %>">
+  <%= markdown(content) %>
+</div>

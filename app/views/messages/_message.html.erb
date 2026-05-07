@@ -1,0 +1,36 @@
+<% role = message.role.to_s %>
+<% bubble_classes = role == 'user' \
+     ? 'rounded-tr-sm bg-neutral-800 text-white dark:bg-neutral-200 dark:text-neutral-900' \
+     : 'rounded-tl-sm bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200' %>
+<% avatar_classes = role == 'user' \
+     ? 'bg-neutral-800 text-white dark:bg-neutral-200 dark:text-neutral-900' \
+     : 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300' %>
+
+<div id="<%= dom_id(message) %>" class="flex gap-3 <%= role == 'user' ? 'flex-row-reverse' : 'flex-row' %>">
+
+  <!-- Avatar -->
+  <div class="flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold <%= avatar_classes %>">
+    <%= role == 'user' ? current_user.email[0].upcase : 'AI' %>
+  </div>
+
+  <!-- Bubble -->
+  <div class="group relative max-w-[80%] space-y-1">
+    <div id="<%= dom_id(message) %>_content"
+         class="prose rounded-2xl px-4 py-2.5 text-sm leading-relaxed <%= bubble_classes %>">
+      <% if message.content.present? %>
+        <%= markdown(message.content) %>
+      <% else %>
+        <!-- Thinking indicator (empty assistant message while streaming) -->
+        <div class="flex items-center gap-1.5 py-0.5">
+          <span class="size-1.5 rounded-full bg-neutral-400 animate-bounce" style="animation-delay:0ms"></span>
+          <span class="size-1.5 rounded-full bg-neutral-400 animate-bounce" style="animation-delay:150ms"></span>
+          <span class="size-1.5 rounded-full bg-neutral-400 animate-bounce" style="animation-delay:300ms"></span>
+        </div>
+      <% end %>
+    </div>
+    <p class="px-1 text-xs text-neutral-400 dark:text-neutral-500 <%= role == 'user' ? 'text-right' : 'text-left' %>">
+      <%= message.created_at.strftime("%H:%M") %>
+    </p>
+  </div>
+
+</div>

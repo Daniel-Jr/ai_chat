@@ -1,0 +1,52 @@
+<div class="flex h-screen overflow-hidden">
+  <%= render "shared/sidebar", chats: @chats, active_chat: @chat %>
+
+  <!-- Chat main area -->
+  <main class="flex flex-1 flex-col overflow-hidden bg-white dark:bg-neutral-900">
+    <!-- Chat header -->
+    <header class="flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-900">
+      <div class="flex items-center gap-3">
+        <!-- Mobile sidebar toggle -->
+        <button type="button"
+                data-action="click->sidebar#toggle"
+                data-sidebar-target="toggle"
+                class="flex size-8 items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700 lg:hidden dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200">
+          <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+        <div>
+          <h1 id="chat_<%= @chat.id %>_title" class="text-sm font-semibold text-neutral-800 dark:text-neutral-200"><%= @chat.title %></h1>
+          <p class="text-xs text-neutral-400 dark:text-neutral-500">llama3.2 via Ollama</p>
+        </div>
+      </div>
+
+      <!-- Delete chat -->
+      <%= button_to chat_path(@chat), method: :delete,
+            data: { turbo_confirm: "Delete this chat? This cannot be undone." },
+            class: "flex size-8 items-center justify-center rounded-lg text-neutral-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20 dark:hover:text-red-400" do %>
+        <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+        </svg>
+      <% end %>
+    </header>
+
+    <!-- Messages area -->
+    <div class="flex-1 overflow-y-auto px-4 py-6"
+         data-controller="chat-scroll"
+         data-chat-scroll-target="container">
+      <div id="messages" class="mx-auto max-w-3xl space-y-6">
+        <%= render @chat.messages.where.not(role: :system) %>
+      </div>
+    </div>
+
+    <!-- Message input -->
+    <div class="border-t border-neutral-200 bg-white px-4 py-4 dark:border-neutral-700 dark:bg-neutral-900">
+      <div class="mx-auto max-w-3xl">
+        <%= render "messages/form", chat: @chat %>
+      </div>
+    </div>
+  </main>
+</div>
+
+<%= turbo_stream_from "chat_#{@chat.id}" %>
