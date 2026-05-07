@@ -1,9 +1,9 @@
 <%= button_to chats_path,
       method: :post,
-      params: { title: "New Chat" },
+      params: { title: t("chats.default_title") },
       class: "flex w-full items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm font-medium text-neutral-700 shadow-xs transition-colors hover:bg-neutral-50 hover:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700" do %>
   <svg class="size-4 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
   </svg>
-  New chat
+  <%= t("chats.new_chat") %>
 <% end %>

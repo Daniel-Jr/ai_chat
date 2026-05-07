@@ -8,7 +8,7 @@
   <div class="relative flex-1" data-controller="autogrow">
     <%= f.text_area :content,
           rows: 1,
-          placeholder: "Ask anything...",
+          placeholder: t("messages.placeholder"),
           class: "w-full resize-none overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 pr-12 text-sm text-neutral-900 shadow-xs outline-none transition-colors placeholder:text-neutral-400 focus:border-neutral-400 focus:bg-white focus:ring-0 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-900 dark:placeholder-neutral-500 dark:focus:border-neutral-500",
           data: {
             autogrow_target: "input",

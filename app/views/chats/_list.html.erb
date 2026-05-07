@@ -1,5 +1,5 @@
 <% if chats.any? %>
-  <p class="mb-1 px-2 text-xs font-medium text-neutral-400 uppercase tracking-wide dark:text-neutral-500">Recent chats</p>
+  <p class="mb-1 px-2 text-xs font-medium text-neutral-400 uppercase tracking-wide dark:text-neutral-500"><%= t("chats.recent") %></p>
   <ul class="space-y-0.5">
     <% chats.each do |chat| %>
       <li>
@@ -14,5 +14,5 @@
     <% end %>
   </ul>
 <% else %>
-  <p class="px-2 py-4 text-center text-xs text-neutral-400 dark:text-neutral-500">No chats yet</p>
+  <p class="px-2 py-4 text-center text-xs text-neutral-400 dark:text-neutral-500"><%= t("chats.no_chats") %></p>
 <% end %>

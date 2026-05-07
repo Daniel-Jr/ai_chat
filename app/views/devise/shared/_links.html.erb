@@ -2,15 +2,15 @@
   devise_links = []
 
   if controller_name != 'sessions'
-    devise_links << link_to("Sign in", new_session_path(resource_name), class: "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200")
+    devise_links << link_to(t("devise.links.sign_in"), new_session_path(resource_name), class: "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200")
   end
 
   if devise_mapping.registerable? && controller_name != 'registrations'
-    devise_links << link_to("Sign up", new_registration_path(resource_name), class: "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200")
+    devise_links << link_to(t("devise.links.sign_up"), new_registration_path(resource_name), class: "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200")
   end
 
   if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-    devise_links << link_to("Forgot password?", new_password_path(resource_name), class: "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200")
+    devise_links << link_to(t("devise.links.forgot_password"), new_password_path(resource_name), class: "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200")
   end
 -%>
 <% devise_links.each do |link| %>

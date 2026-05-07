@@ -7,8 +7,8 @@
           <path d="M2 4.25A2.25 2.25 0 014.25 2h11.5A2.25 2.25 0 0118 4.25v8.5A2.25 2.25 0 0115.75 15h-3.105a3.501 3.501 0 001.1 1.677A.75.75 0 0113.26 18H6.74a.75.75 0 01-.484-1.323A3.501 3.501 0 007.355 15H4.25A2.25 2.25 0 012 12.75v-8.5z" />
         </svg>
       </div>
-      <h1 class="text-2xl font-bold text-neutral-900 dark:text-white">AI Chat</h1>
-      <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">Choose a new password</p>
+      <h1 class="text-2xl font-bold text-neutral-900 dark:text-white"><%= t("app_name") %></h1>
+      <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400"><%= t("devise.passwords.edit.subtitle") %></p>
     </div>
 
     <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-xs dark:border-neutral-800 dark:bg-neutral-900">
@@ -18,9 +18,9 @@
 
         <div class="space-y-4">
           <div>
-            <%= f.label :password, "New password", class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
+            <%= f.label :password, t("devise.passwords.edit.new_password"), class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
             <% if @minimum_password_length %>
-              <span class="block text-xs text-neutral-400 mb-1">(<%= @minimum_password_length %> characters minimum)</span>
+              <span class="block text-xs text-neutral-400 mb-1"><%= t("devise.passwords.edit.minimum_chars", count: @minimum_password_length) %></span>
             <% end %>
             <%= f.password_field :password, autofocus: true, autocomplete: "new-password",
                   class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 shadow-xs outline-none placeholder:text-neutral-400 focus:border-neutral-500 focus:ring-2 focus:ring-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:focus:ring-neutral-700",
@@ -28,13 +28,13 @@
           </div>
 
           <div>
-            <%= f.label :password_confirmation, "Confirm new password", class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
+            <%= f.label :password_confirmation, t("devise.passwords.edit.confirm_password"), class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password",
                   class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 shadow-xs outline-none placeholder:text-neutral-400 focus:border-neutral-500 focus:ring-2 focus:ring-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:focus:ring-neutral-700",
                   placeholder: "••••••••" %>
           </div>
 
-          <%= f.submit "Change my password",
+          <%= f.submit t("devise.passwords.edit.submit"),
                 class: "w-full rounded-lg bg-neutral-800 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-neutral-700 active:bg-neutral-900 dark:bg-neutral-200 dark:text-neutral-900 dark:hover:bg-neutral-300 cursor-pointer" %>
         </div>
       <% end %>

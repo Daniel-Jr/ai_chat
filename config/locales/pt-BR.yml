@@ -1,0 +1,77 @@
+pt-BR:
+  app_name: "AI Chat"
+
+  # Active Record attribute names
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
+        current_password: "Senha atual"
+        remember_me: "Lembrar de mim"
+
+  # Chats
+  chats:
+    default_title: "Nova conversa"
+    new_chat: "Nova conversa"
+    no_chats: "Nenhuma conversa ainda"
+    recent: "Conversas recentes"
+    start_conversation: "Inicie uma nova conversa com a IA."
+    delete_confirm: "Excluir esta conversa? Essa ação não pode ser desfeita."
+    model_info: "llama3.2 via Ollama"
+
+  # Messages
+  messages:
+    placeholder: "Pergunte qualquer coisa..."
+
+  # Shared
+  shared:
+    sign_out: "Sair"
+
+  # Devise views
+  devise:
+    sessions:
+      new:
+        subtitle: "Acesse sua conta"
+        submit: "Entrar"
+    registrations:
+      new:
+        subtitle: "Crie sua conta"
+        submit: "Cadastrar"
+      edit:
+        subtitle: "Editar sua conta"
+        leave_blank_hint: "Deixe em branco para manter a senha atual"
+        minimum_chars: "%{count} caracteres no mínimo"
+        current_password_hint: "Necessário para salvar as alterações"
+        submit: "Atualizar conta"
+        danger_zone: "Zona de perigo"
+        cancel_account: "Excluir minha conta"
+        cancel_confirm: "Tem certeza? Essa ação não pode ser desfeita."
+        awaiting_confirmation: "Aguardando confirmação para:"
+    passwords:
+      new:
+        subtitle: "Redefinir sua senha"
+        submit: "Enviar instruções"
+      edit:
+        subtitle: "Escolha uma nova senha"
+        new_password: "Nova senha"
+        confirm_password: "Confirmar nova senha"
+        minimum_chars: "%{count} caracteres no mínimo"
+        submit: "Alterar senha"
+    confirmations:
+      new:
+        subtitle: "Reenviar instruções de confirmação"
+        submit: "Reenviar instruções de confirmação"
+    unlocks:
+      new:
+        subtitle: "Reenviar instruções de desbloqueio"
+        submit: "Reenviar instruções de desbloqueio"
+    links:
+      sign_in: "Entrar"
+      sign_up: "Cadastrar"
+      forgot_password: "Esqueceu a senha?"
+    errors:
+      header:
+        one: "1 erro impediu esta ação:"
+        other: "%{count} erros impediram esta ação:"
